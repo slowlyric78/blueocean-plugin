@@ -1,0 +1,119 @@
+.test-results-container {
+  .test-result-block {
+    margin: 1em 0 0 0;
+    &:first-child {
+      margin-top: 0;
+    }
+    h4 {
+      margin: 0 0 .4em 0;
+    }
+    .result-item-children {
+      padding: 0;
+      border: 0;
+    }
+  }
+  .test-console {
+    padding: 1em 0;
+    font-size: 15px;
+    overflow-x: auto;
+    h4 {
+      font-size: 17px;
+      margin: .75em 0em .5em 3em;
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+
+  }
+  .stack-trace {
+    white-space: pre;
+  }
+  .count {
+    font-size: 4rem;
+    padding-bottom: 0.1em;
+  }
+  .new-passed, .passed {
+    .count {
+      color: #4A9900; // @brand-success;
+    }
+  }
+  .count-0.count-0 {
+    .count {
+      color: #949393; // @brand-grey-lite;
+    }
+  }
+  .new-failed, .failed {
+    .count {
+      color: #C4000A; // @brand-danger;
+    }
+  }
+  .skipped {
+    .count {
+      color: #F5A623; // @branding-warning;
+    }
+  }
+}
+
+.console-log {
+  &.insert-line-numbers {
+    counter-reset: log;
+    .line {
+      color: #eee;
+      display: block;
+      text-decoration: none;
+      white-space: pre;
+      font: 13px "Source Code Pro", Menlo, Monaco, Consolas, "Courier New", monospace;
+      margin: 0;
+      padding: 0px 0 0 3em;
+
+      &:hover, &:hover:before {
+        background: #444;
+        color: #fff;
+      }
+
+      &:before {
+        counter-increment: log;
+        content: counter(log);
+        min-width: 2em;
+        display: inline-block;
+        text-align: right;
+        padding: 0 1em;
+        margin-left: -3em;
+        color: #777
+      }
+    }
+  }
+}
+
+.TestSummary {
+    display: flex;
+    padding: 16px 40px;
+    background-color: #fff;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.15);
+    border-left: 6px solid;
+    border-color: #78b037;
+
+    .TestSummary-icon {
+        width: 80px;
+        height: 80px;
+        flex-shrink: 0;
+        margin-right: 24px;
+        vertical-align: bottom;
+    }
+
+    .TestSummary-content {
+        margin-top: 8px;
+        flex-grow: 1;
+    }
+
+    &.u-failed {
+        border-color: #d24146;
+    }
+}
+
+.test-results-container {
+    .TestSummary {
+        width: 468px;
+        margin: 0 auto;
+    }
+}
