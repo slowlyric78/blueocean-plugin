@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { pagerService } from '@jenkins-cd/blueocean-core-js';
+import Extensions from '@jenkins-cd/js-extensions';
 
 import TestResults from './testing/TestResults';
 import TestService from './testing/TestService';
@@ -33,7 +34,16 @@ export default class RunDetailsTests extends Component {
 
         let result;
         if (this.props.result.testSummary.total || this.props.result.testSummary.total > 0) {
-            result = (
+            result = (<div>
+                {<Extensions.Renderer
+                    extensionPoint="jenkins.pipeline.run.tests.header"
+                    params={this.props.params}
+                    pipeline={this.props.pipeline}
+                    run={this.props.result}
+                    runId={this.props.result.id}
+                    t={t}
+                />}
+
                 <div className="test-results-container">
                     <TestResults
                         locale={locale}
@@ -43,7 +53,16 @@ export default class RunDetailsTests extends Component {
                         testService={this.testService}
                     />
                 </div>
-            );
+
+                {<Extensions.Renderer
+                    extensionPoint="jenkins.pipeline.run.tests.footer"
+                    params={this.props.params}
+                    pipeline={this.props.result}
+                    run={this.props.result}
+                    runId={this.props.result.id}
+                    t={t}
+                />}
+            </div>);
         } else {
             result = (<NoTestsPlaceholder t={this.props.t} />);
         }
