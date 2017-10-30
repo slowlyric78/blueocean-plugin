@@ -57,14 +57,25 @@ export default class RunDetailsTests extends Component {
                 {<Extensions.Renderer
                     extensionPoint="jenkins.pipeline.run.tests.footer"
                     params={this.props.params}
-                    pipeline={this.props.result}
+                    pipeline={this.props.pipeline}
                     run={this.props.result}
                     runId={this.props.result.id}
                     t={t}
                 />}
             </div>);
         } else {
-            result = (<NoTestsPlaceholder t={this.props.t} />);
+            result = (<div>
+                {<Extensions.Renderer
+                    extensionPoint="jenkins.pipeline.run.tests.header"
+                    params={this.props.params}
+                    pipeline={this.props.pipeline}
+                    run={this.props.result}
+                    runId={this.props.result.id}
+                    t={t}
+                    />}
+
+                {<NoTestsPlaceholder t={this.props.t} />}
+            </div>);
         }
         return result;
     }
